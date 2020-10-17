@@ -1,0 +1,16 @@
+HW4, Task 3
+We want to rise alert if the operating system behaves strangely. So we collect syslog events.
+
+I would create a matrix, where one row stands for one system log and one column stands for one attribute of the feature. 
+
+Among the feature attributes can be: timestamp, level, priority, number of words in the message, message.
+Message we can analyse with NLP technics, so for the message words we will have a separate matrix, that would have key words of the logs messages represented as columns.
+Each word would have its sentiment value of whether the word can cause danger or no.
+For the messages matrix: rows - logs; cols - words, values - the number of times the word was mentioned in the message, or first technic is just to check 0 and 1.
+Then we concatenate two data frames - of words of the messages and of the technical data - timestamp etc.
+Now we have a big matrix of shape: logs X features.
+To classify the data that we collected, firstly, we need to normalise the data, then we can reduce the number of dimensions, for this we use PCA algorithm. (For example we can get rid of features of the words that are used really rarely.)
+Afterwards, we can apply K-means Dist technic. As the elbow rule showed, we would split the data over 7 categories. To separate this data afterwards into two categories, we compute the distances between the one instance and its nearest centroid. If the distance is bigger than the threshold then this system log is abnormal.
+
+In the other case, we can use Gaussian mixture model in the same way I the technic works for K-means Dist.
+
