@@ -1,0 +1,4 @@
+<launch>
+    <arg name="speed" default="15"/>
+    <node name="dist_node" pkg="dist" type="listener" output="screen"/>
+</launch>
